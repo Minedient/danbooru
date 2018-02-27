@@ -664,7 +664,7 @@ class Post < ApplicationRecord
 
       if PostKeeperManager.enabled? && persisted?
         # no need to do this check on the initial create
-        PostKeeperManager.queue_check(id)
+        PostKeeperManager.check_and_update(self, CurrentUser.id, increment_tags)
       end
     end
 
